@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    	*{
+    		padding:0;
+    		margin:0;
+    		list-style:none;
+    	}
+    	.box{
+    		width:300px;
+    		height:200px;
+    		border:1px solid #ccc;
+    		margin:30px auto;
+    		border-radius:5px;
+    		text-align:center;
+    	}
+    	
+    	h2{
+    		width:100%;
+    		height:auto;
+    		border-bottom:1px solid #ccc;
+    	}
+    	p{
+    		width:100%;
+    		height:50%;
+    		display:inline-block;
+    		
+    		line-height:80px;
+    		
+    	}
+    	
+    	span{
+    		width:47%;
+    		height:40px;
+    		display: inline-block;
+    		
+    		line-height:40px;
+    	}
+    </style>
+</head>
+<body>
+   
+</body>
+
+<script>
+
+
+      function Dialog(obj){
+        this.obj=obj;
+        this.init();
+        this.click();
+      };
+      
+       Dialog.prototype={
+       	constructor:Dialog,
+       	init:function(){
+   		var div=document.createElement('div');
+   		div.className='box'
+   		 div.innerHTML=`
+   		      <h2>
+   		      ${this.obj.title}
+   		      </h2>
+   		      <p>
+   		       ${this.obj.centent}
+   		      </p>
+   		    <span>
+   		      ${this.obj.btn[0]}
+   		    </span> 
+   		    <span>
+   		      ${this.obj.btn[1]}
+   		    </span>
+   		   `
+		  document.body.appendChild(div)
+       		
+       	     },
+       	     click:function(){
+       	     	var that=this;
+       	     	var btn=document.querySelectorAll('span');
+       	     	 btn[0].addEventListener('click',function(){
+       	     	 	that.obj.callback();
+       	     	 },false);
+       	     	 
+       	     	  btn[1].addEventListener('click',function(){
+       	     	 	that.obj.callbackS();
+       	     	 },false);
+       	     }
+       };
+       
+    new Dialog({
+    	  title:'HTOA',
+         centent: '欢迎来到HTOA!' ,
+        
+          btn:['退出','确地'],
+        
+        callback:function(){
+        	alert(1)
+            location.href='user.html'
+        },
+        
+        callbackS:function(){
+        	alert(2)
+            location.href='list.html'
+        }
+    });
+</script>
+</html>
